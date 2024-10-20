@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+ <head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+
+  <link rel="stylesheet" href="styles/style.css">
+
+  <style>
+
+     .dislike{
+
+        color:blue;
+
+     }
+
+     .large-text{
+
+         font-size: bolder;
+
+     }
+
+     .textcenter{
+
+             text-align: center;
+
+     }
+
+  </style>
+
+ </head>
+
+ <body>
+
+      <header>
+
+         <section>
+
+          <h1>Welcome to my Dom</h1>
+
+          <main>
+
+             <h1>My awesom dom baba !</h1>
+
+             <ul id="music">
+
+              <li>Jalali set</li>
+
+              <li>shafayet</li>
+
+              <li>bonobash</li>
+
+             </ul>
+
+         </section>
+
+          <section>
+
+            <h1 id="fruitslike">The fruits  i like </h1>
+
+            <main>
+
+               <h1>the fruits i  like !</h1>
+
+               <ul>
+
+                <li class="dislike">apple</li>
+
+                <li class="dislike">mango</li>
+
+                <li class="dislike">jackfuits</li>
+
+               </ul>
+
+          </section>
+
+           <section id="container">
+
+              <h1 id="dontlike">The vegetable i hate</h1>
+
+              <li>
+
+                 korola
+
+              </li>
+
+              <li>mula</li>
+
+              <li>pepe</li>
+
+           </section>
+
+         </main>
+
+      </header>
+
+      <script src="js/dom.js"></script>
+
+      <script>
+
+           const musiclist = document.getElementById('music');
+
+  console.log(musiclist);
+
+  const li =document.createElement('li');
+
+  li.innerText = 'jems';
+
+  musiclist.appendChild(li);
+
+      </script>
+
+ </html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Modal Example</title>
+    <style>
+        .seat {
+            cursor: pointer;
+            padding: 10px;
+            margin: 5px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .selected {
+            background-color: #1DD100;
+            border-color: #1DD100;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div>
+        <div class="seat" onclick="selectSeat(this)">Seat 1</div>
+        <div class="seat" onclick="selectSeat(this)">Seat 2</div>
+        <div class="seat" onclick="selectSeat(this)">Seat 3</div>
+
+        <button id="next" class="btn w-full btn-green text-white bg-[#1DD100] mt-4" onclick="showModal()" disabled>NEXT</button>
+
+        <dialog id="my_modal_3" class="modal">
+            <div class="modal-box">
+                <form method="dialog">
+                    <button type="button" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onclick="closeModal()">✕</button>
+                </form>
+                <h3 class="text-lg font-bold">Hello!</h3>
+                <p class="py-4">Press ESC key or click on ✕ button to close</p>
+            </div>
+        </dialog>
+    </div>
+
+    <script>
+        function showModal() {
+            const modal = document.getElementById('my_modal_3');
+            modal.showModal(); // Show the modal
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('my_modal_3');
+            modal.close(); // Hide the modal
+        }
+
+        function selectSeat(seat) {
+            seat.classList.toggle('selected'); // Toggle selected class on seat
+
+            const applyButton = document.getElementById('next');
+            const seats = document.querySelectorAll('.seat');
+
+            // Check if any seat is selected
+            const isAnySeatSelected = Array.from(seats).some(seat => seat.classList.contains('selected'));
+
+            if (isAnySeatSelected) {
+                applyButton.disabled = false; // Enable the button
+                applyButton.classList.add('enabled'); // Optionally add a class for styling
+            } else {
+                applyButton.disabled = true; // Disable the button
+                applyButton.classList.remove('enabled'); // Optionally remove the enabled class
+            }
+        }
+    </script>
+</body>
+</html>

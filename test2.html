@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Ticket Booking System</title>
+  <style>
+    .seat {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      background-color: #4CAF50;
+      cursor: pointer;
+      display: inline-block;
+      border-radius: 5px;
+      text-align: center;
+      line-height: 50px;
+      color: white;
+    }
+    .selected {
+      background-color: #FFD700;  /* Highlight selected seat */
+    }
+    #nextButton {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #1DD100;
+      color: white;
+      border: none;
+      cursor: not-allowed;
+    }
+    #nextButton.enabled {
+      cursor: pointer;
+      background-color: #28a745;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Select Your Seat</h2>
+<div id="seatsContainer">
+  <div class="seat" data-seat="1">1</div>
+  <div class="seat" data-seat="2">2</div>
+  <div class="seat" data-seat="3">3</div>
+  <div class="seat" data-seat="4">4</div>
+</div>
+
+<h2>Enter Phone Number</h2>
+<input type="text" id="phoneInput" placeholder="Enter your phone number">
+
+<br><br>
+<button id="nextButton" disabled>Next</button>
+
+<script>
+  const seats = document.querySelectorAll('.seat');
+  const phoneInput = document.getElementById('phoneInput');
+  const nextButton = document.getElementById('nextButton');
+  let selectedSeat = null;
+
+  // Function to update the state of the "Next" button
+  function updateNextButtonState() {
+    const isPhoneFilled = phoneInput.value.trim().length >= 10; // Ensure phone number is at least 10 digits
+    if (selectedSeat && isPhoneFilled) {
+      nextButton.disabled = false;
+      nextButton.classList.add('enabled');
+    } else {
+      nextButton.disabled = true;
+      nextButton.classList.remove('enabled');
+    }
+  }
+
+  // Event listener for each seat selection
+  seats.forEach(seat => {
+    seat.addEventListener('click', () => {
+      if (selectedSeat) {
+        selectedSeat.classList.remove('selected'); // Deselect previously selected seat
+      }
+      seat.classList.add('selected');
+      selectedSeat = seat; // Store the selected seat
+      updateNextButtonState();
+    });
+  });
+
+  // Event listener for phone input changes
+  phoneInput.addEventListener('input', updateNextButtonState);
+</script>
+
+</body>
+</html>
